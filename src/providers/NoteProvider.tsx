@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useState } from "react";
+import { createContext, useState, useContext } from "react";
 
 type NoteProviderContextType = {
   noteText: string;
@@ -12,7 +12,19 @@ export const NoteProviderContext = createContext<NoteProviderContextType>({
   setNoteText: () => {},
 });
 
-function NoteProvider({ children }: { children: React.ReactNode }) {
+export function useNote() {
+  const context = useContext(NoteProviderContext);
+  if (!context) {
+    throw new Error("useNote must be used within a NoteProvider");
+  }
+  return context;
+}
+
+export default function NoteProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [noteText, setNoteText] = useState("");
 
   return (
@@ -21,5 +33,3 @@ function NoteProvider({ children }: { children: React.ReactNode }) {
     </NoteProviderContext.Provider>
   );
 }
-
-export default NoteProvider;

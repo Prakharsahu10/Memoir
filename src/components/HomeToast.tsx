@@ -1,10 +1,10 @@
 "use client";
 
-import { useToast } from "@/hooks/use-toast";
+import { useToast } from "@/hooks/useToast";
 import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 
-type ToastVariant = "success" | "destructive" | "default";
+type ToastVariant = "default" | "destructive";
 
 type ToastConfig = {
   title: string;
@@ -16,22 +16,22 @@ const TOAST_CONFIG: Record<string, ToastConfig> = {
   login: {
     title: "Logged in",
     description: "You have been successfully logged in",
-    variant: "success",
+    variant: "default",
   },
   signUp: {
     title: "Signed up",
     description: "Check your email for a confirmation link",
-    variant: "success",
+    variant: "default",
   },
   newNote: {
     title: "New Note",
     description: "You have successfully created a new note",
-    variant: "success",
+    variant: "default",
   },
   logOut: {
     title: "Logged out",
     description: "You have been successfully logged out",
-    variant: "success",
+    variant: "default",
   },
 };
 
